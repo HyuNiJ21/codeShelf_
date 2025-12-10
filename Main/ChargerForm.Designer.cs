@@ -173,7 +173,6 @@
             this.txtRateId.Location = new System.Drawing.Point(342, 486);
             this.txtRateId.Margin = new System.Windows.Forms.Padding(6);
             this.txtRateId.Name = "txtRateId";
-            this.txtRateId.ReadOnly = false;
             this.txtRateId.Size = new System.Drawing.Size(286, 50);
             this.txtRateId.TabIndex = 12;
             // 
@@ -194,7 +193,6 @@
             this.txtLocationId.Location = new System.Drawing.Point(342, 388);
             this.txtLocationId.Margin = new System.Windows.Forms.Padding(6);
             this.txtLocationId.Name = "txtLocationId";
-            this.txtLocationId.ReadOnly = false;
             this.txtLocationId.Size = new System.Drawing.Size(286, 50);
             this.txtLocationId.TabIndex = 10;
             // 
@@ -244,7 +242,6 @@
             this.txtChargerId.Location = new System.Drawing.Point(342, 92);
             this.txtChargerId.Margin = new System.Windows.Forms.Padding(6);
             this.txtChargerId.Name = "txtChargerId";
-            this.txtChargerId.ReadOnly = false;
             this.txtChargerId.Size = new System.Drawing.Size(286, 50);
             this.txtChargerId.TabIndex = 6;
             // 
@@ -348,6 +345,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(2171, 1008);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);

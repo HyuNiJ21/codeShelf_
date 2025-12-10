@@ -48,7 +48,7 @@
             this.dgvSettlement.Name = "dgvSettlement";
             this.dgvSettlement.RowHeadersWidth = 51;
             this.dgvSettlement.RowTemplate.Height = 27;
-            this.dgvSettlement.Size = new System.Drawing.Size(1014, 700);
+            this.dgvSettlement.Size = new System.Drawing.Size(928, 606);
             this.dgvSettlement.TabIndex = 0;
             // 
             // groupBoxPeriod
@@ -58,7 +58,7 @@
             this.groupBoxPeriod.Controls.Add(this.dtpStart);
             this.groupBoxPeriod.Controls.Add(this.label2);
             this.groupBoxPeriod.Controls.Add(this.label1);
-            this.groupBoxPeriod.Location = new System.Drawing.Point(1069, 70);
+            this.groupBoxPeriod.Location = new System.Drawing.Point(991, 77);
             this.groupBoxPeriod.Name = "groupBoxPeriod";
             this.groupBoxPeriod.Size = new System.Drawing.Size(400, 180);
             this.groupBoxPeriod.TabIndex = 1;
@@ -116,7 +116,7 @@
             this.groupBoxSummary.Controls.Add(this.label5);
             this.groupBoxSummary.Controls.Add(this.label4);
             this.groupBoxSummary.Controls.Add(this.label3);
-            this.groupBoxSummary.Location = new System.Drawing.Point(1069, 270);
+            this.groupBoxSummary.Location = new System.Drawing.Point(991, 277);
             this.groupBoxSummary.Name = "groupBoxSummary";
             this.groupBoxSummary.Size = new System.Drawing.Size(400, 300);
             this.groupBoxSummary.TabIndex = 2;
@@ -205,7 +205,7 @@
             // 
             // btnBack
             // 
-            this.btnBack.Location = new System.Drawing.Point(1273, 604);
+            this.btnBack.Location = new System.Drawing.Point(1195, 611);
             this.btnBack.Name = "btnBack";
             this.btnBack.Size = new System.Drawing.Size(140, 40);
             this.btnBack.TabIndex = 0;
@@ -214,7 +214,7 @@
             // 
             // SettlementForm
             // 
-            this.ClientSize = new System.Drawing.Size(1504, 800);
+            this.ClientSize = new System.Drawing.Size(1422, 800);
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.groupBoxSummary);
             this.Controls.Add(this.groupBoxPeriod);
