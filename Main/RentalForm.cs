@@ -13,8 +13,19 @@ namespace Main
         {
             InitializeComponent();
 
+            // 필터 콤보박스
+            cbStatus.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbStatus.Items.Clear();
+            cbStatus.Items.Add("전체");
+            cbStatus.Items.Add("사용중");
+            cbStatus.Items.Add("반납완료");
+            cbStatus.SelectedIndex = 0;
+            cbStatus.BringToFront();
+
             LoadChargerCards();
             UpdateStatusCount();
+
+            LoadAllRentalHistory();
         }
 
         private void UpdateStatusCount()
@@ -118,6 +129,35 @@ namespace Main
             }
         }
 
+        private void LoadAllRentalHistory()
+        {
+            using (OracleConnection conn = DB.GetConn())
+            {
+                conn.Open();
+
+                string sql = @"
+                    SELECT
+                        r.charger_id AS 충전기ID,
+                        m.name AS 사용자명,
+                        r.rental_time AS 대여시간,
+                        r.return_time AS 반납시간,
+                        NVL(r.charge_amount, 0) AS 요금,
+                        CASE
+                            WHEN r.return_time IS NULL THEN '사용중'
+                            ELSE '반납완료'
+                        END AS 상태
+                    FROM rental r
+                    JOIN member m ON r.member_id = m.member_id
+                    ORDER BY r.rental_time DESC";
+
+                OracleDataAdapter da = new OracleDataAdapter(sql, conn);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+
+                dataGridView1.DataSource = dt;
+            }
+        }
+
         private void 메인화면ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             new MainForm().Show();
@@ -146,6 +186,50 @@ namespace Main
         {
             new Start().Show();
             this.Close();
+        }
+
+        private void cbStatus_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string status = cbStatus.Text;
+
+            if (status == "전체")
+            {
+                LoadAllRentalHistory();
+                return;
+            }
+
+            using (OracleConnection conn = DB.GetConn())
+            {
+                conn.Open();
+
+                string sql = @"
+                    SELECT,
+                        r.charger_id AS 충전기ID,
+                        m.name AS 사용자명,
+                        r.rental_time AS 대여시간,
+                        r.return_time AS 반납시간,
+                        NVL(r.charge_amount, 0) AS 요금,
+                        CASE
+                            WHEN r.return_time IS NULL THEN '사용중'
+                            ELSE '반납완료'
+                        END AS 상태
+                    FROM rental r
+                    JOIN member m ON r.member_id = m.member_id
+                ";
+
+                if (status == "사용중")
+                    sql += " WHERE r.return_time IS NULL";
+                else if (status == "반납완료")
+                    sql += " WHERE r.return_time IS NOT NULL";
+
+                sql += " ORDER BY r.rental_time DESC";
+
+                OracleDataAdapter da = new OracleDataAdapter(sql, conn);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+
+                dataGridView1.DataSource = dt;
+            }
         }
     }
 }
